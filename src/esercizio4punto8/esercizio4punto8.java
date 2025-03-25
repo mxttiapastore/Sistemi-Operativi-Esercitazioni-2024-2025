@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 public class esercizio4punto8 {
 
-    private static int num_thread = 10;
+    private static int num_thread = 100;
     private static Semaphore[] semafori = new Semaphore[num_thread];
 
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class esercizio4punto8 {
                     }
                 });
                 t.start();
-                Thread.sleep(1000);
+                Thread.sleep(500);
             }
 
         }catch (InterruptedException e){e.printStackTrace();}
