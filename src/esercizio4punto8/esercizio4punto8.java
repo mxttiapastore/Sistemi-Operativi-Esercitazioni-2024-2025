@@ -28,8 +28,10 @@ public class esercizio4punto8 {
                     }
                 });
                 t.start();
-                Thread.sleep(500);
+                Thread.sleep(1000);
+                System.out.println("Thread numero " + idThread + " terminato");
             }
+
 
         }catch (InterruptedException e){e.printStackTrace();}
     }
