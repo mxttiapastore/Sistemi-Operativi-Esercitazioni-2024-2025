@@ -12,6 +12,7 @@ public class Main{
         ProdottoScalare[] threads = new ProdottoScalare[m];
         
         int risultato_totale = 0;
+
         for(int i = 0; i < m; i++){
             threads[i].join();
             risultato_totale += threads[i].getRisultato();
