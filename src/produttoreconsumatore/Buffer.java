@@ -14,7 +14,7 @@ public abstract class Buffer {
 
     public abstract int get() throws InterruptedException;
 
-    public void test(int numProduttori, int numConsumatori){
+    public void test(int numProduttori, int numConsumatori) throws InterruptedException {
         for(int i = 0; i < numProduttori ; i++){
             new Thread(new Produttore(this)).start();
         }
