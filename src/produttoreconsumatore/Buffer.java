@@ -16,10 +16,10 @@ public abstract class Buffer {
 
     public void test(int numProduttori, int numConsumatori) throws InterruptedException {
         for(int i = 0; i < numProduttori ; i++){
-            new Thread(new Produttore(this)).start();
+            new Thread(new Produttore(this, i)).start();
         }
         for(int i = 0; i < numConsumatori ; i++){
-            new Thread(new Consumatore(this)).start();
+            new Thread(new Consumatore(this,i)).start();
         }
     }
 

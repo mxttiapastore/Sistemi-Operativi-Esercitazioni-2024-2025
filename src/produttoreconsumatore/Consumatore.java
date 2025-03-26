@@ -5,15 +5,22 @@ import java.util.concurrent.TimeUnit;
 public class Consumatore extends Thread{
 
     private Buffer buffer;
+    private int id ;
 
-    public Consumatore(Buffer b){buffer = b;}
+    public Consumatore(Buffer b, int id){buffer = b;
+        this.id = id ; }
+
+    public int getid(){
+        return id;
+    }
+
 
     public void run(){
         try{
             while (true){
                 int i = buffer.get();
                 consuma(i);
-                System.out.println("Il consumatore numero "+ getId() + " ha prelevato dall'indice " + i);
+                System.out.println("Il consumatore numero "+ getid() + " ha prelevato dall'indice " + i);
             }
         }catch (InterruptedException e){}
     }

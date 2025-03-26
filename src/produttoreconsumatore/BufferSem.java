@@ -21,6 +21,7 @@ public class BufferSem extends Buffer {
         in = (in + 1) % buffer.length;
         mutex.release();
         ciSonoElementi.release();
+        Thread.sleep(1000);
     }
 
     public int get() throws InterruptedException{
@@ -30,7 +31,9 @@ public class BufferSem extends Buffer {
         out = (out + 1) % buffer.length;
         mutex.release();
         ciSonoPostiVuoti.release();
+        Thread.sleep(1000);
         return i;
+
     }
 
     public static void main(String[] args) throws InterruptedException {
