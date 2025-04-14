@@ -15,7 +15,7 @@ public class TavoloSemDeadlock extends Tavolo {
     @Override
     public void prendiBacchette(int i) throws InterruptedException {
         int first, second;
-        // Per i filosofi da 0 a 3: prendi prima la bacchetta i (sinistra) e poi quella (i+1)%5 (destra)
+        // Per i filosofi da 0 a 3: prendi prima la bacchette i (sinistra) e poi quella (i+1)%5 (destra)
         // Per il filosofo 4: inverte l’ordine per rompere il ciclo di attesa
         if (i == 4) {
             first = (i + 1) % 5;
