@@ -8,9 +8,10 @@ import java.util.concurrent.TimeUnit;
 
 public class StabilimentoSem extends Stabilimento {
 
-    protected final int N = 10; //numero bagnanti
+
 
     private int count = 0;
+    private int countPagamento = 0;
     private int incasso = 0;
     private List<Integer> scelte = new ArrayList<>();
 
@@ -33,12 +34,14 @@ public class StabilimentoSem extends Stabilimento {
         if(count == N){
             int scelta = rand.nextInt(OMBRELLONE + 1);
             scelte.add(scelta);
+            System.out.println("La comitiva ha finio");
             permettiPreparazione.release();
             mutex.release();
         }else{
             int scelta = rand.nextInt(OMBRELLONE + 1);
             scelte.add(scelta);
-            System.out.println("Il bagnante numero " + Thread.currentThread());
+            System.out.println("Il bagnante numero " + Thread.currentThread().getId() + " sta sccegliendo...");
+            TimeUnit.SECONDS.sleep(1);
             mutex.release();
         }
 
@@ -51,7 +54,7 @@ public class StabilimentoSem extends Stabilimento {
             System.out.println("Il gestore sta preparando un " + (scelta == LETTINO ? "lettino..." : "ombrellone..."));
             TimeUnit.SECONDS.sleep(scelta == LETTINO ? TEMPO_LETTINO : TEMPO_OMBRELLONE);
         }
-        permettiPagamento.release();
+        permettiPagamento.release(N);
 
     }
 
@@ -59,7 +62,13 @@ public class StabilimentoSem extends Stabilimento {
     public void paga() throws InterruptedException {
         permettiPagamento.acquire();
         mutex.acquire();
-        if(scelte.isEmpty()){
+        countPagamento++;
+        if(countPagamento == N){
+            int scelta = scelte.getFirst();
+            if(scelta == LETTINO) incasso += COSTO_LETTINO;
+            else incasso += COSTO_OMBRELLONE;
+            scelte.removeFirst();
+            System.out.println("L'ultimo bagnante ha finito di pagare ");
             permettiChiusura.release();
             mutex.release();
         }else{
@@ -76,5 +85,10 @@ public class StabilimentoSem extends Stabilimento {
         permettiChiusura.acquire();
         System.out.println("Il gestore ha chiuso lo stabilimento, con un incasso di "+ incasso + " euro.");
 
+    }
+
+    public static void main(String[] args) {
+        Stabilimento s = new StabilimentoSem();
+        s.test();
     }
 }
