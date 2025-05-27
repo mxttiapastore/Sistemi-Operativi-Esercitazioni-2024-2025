@@ -21,9 +21,9 @@ public abstract class Biblioteca {
 
 
     public void test(){
-        int scelta = rand.nextInt(2);
         new Bibliotecario(this).start();
         for(int i = 0 ; i < M ; i++){
+            int scelta = rand.nextInt(2);
             new Utente(this , tipi[scelta]);
         }
 
