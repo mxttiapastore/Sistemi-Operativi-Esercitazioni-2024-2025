@@ -62,6 +62,7 @@ public class SalaBowlingSem extends SalaBowling{
         }else{
             mutex.acquire();
             informazioni.put(nome , informazioni.get(nome)- 1);
+            mutex.release();
             System.out.println(nome + " ha tirato");
         }
         TimeUnit.SECONDS.sleep(1); //per il test
