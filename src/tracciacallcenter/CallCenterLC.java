@@ -29,9 +29,6 @@ public class CallCenterLC extends CallCenter{
     private boolean possoChiamareProssimo = false;
 
 
-
-
-
     @Override
     public void richiediAssistenza() throws InterruptedException {
         l.lock();
