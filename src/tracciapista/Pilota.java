@@ -7,6 +7,7 @@ public class Pilota extends Thread{
 
     private Pista pista;
     private int eta;
+    private int numPista;
 
     private Random rand = new Random();
 
@@ -31,5 +32,11 @@ public class Pilota extends Thread{
 
     public int getEta(){
         return eta;
+    }
+    public int getNumPista(){
+        return numPista;
+    }
+    public void setNumPista(int i){
+        numPista = i;
     }
 }
