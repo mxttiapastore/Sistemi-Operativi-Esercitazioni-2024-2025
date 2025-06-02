@@ -36,6 +36,7 @@ public class CallCenterLC extends CallCenter{
             while (! possoRichiedere){
                 filaRichieste.await();
             }
+            possoRichiedere = false;
             System.out.println("Il cliente " + Thread.currentThread().getName() + " sta parlando con un operatore");
             fornisci.signal();
             possoFornire = true;
