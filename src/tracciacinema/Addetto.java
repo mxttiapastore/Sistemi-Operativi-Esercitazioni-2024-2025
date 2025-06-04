@@ -10,11 +10,11 @@ public class Addetto extends Thread{
 
     public void run(){
         try{
-            boolean esito = cinema.consegnaBiglietto();
-            while(! esito){
-                esito = cinema.consegnaBiglietto();
-            }
+
+            while(!cinema.consegnaBiglietto()){}
+
             cinema.chiudiCinema();
+
         }catch (InterruptedException e){}
     }
 
